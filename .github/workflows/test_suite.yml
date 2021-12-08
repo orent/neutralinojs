@@ -40,6 +40,14 @@ jobs:
       run: choco install boost-msvc-14.1
     - name: Build
       run: ./build_windows.bat
+    - name: Setup Spec Requirements
+      working-directory: ./bin/extensions/sampleextension 
+      run: npm ci
+    - name: Run Spec
+      working-directory: ./spec 
+      run: | 
+        npm ci
+        npm run test
 
   build-darwin:
     runs-on: macos-latest
