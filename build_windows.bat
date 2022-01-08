@@ -1,5 +1,10 @@
 @echo off
 
+cmake --version
+cmake -H. -Bbuild
+cmake --build build
+exit /b
+
 echo Looking for vswhere.exe...
 set "vswhere=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
 if not exist "%vswhere%" set "vswhere=%ProgramFiles%\Microsoft Visual Studio\Installer\vswhere.exe"

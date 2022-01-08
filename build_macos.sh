@@ -1,4 +1,11 @@
 #!/bin/sh
+set -e
+set -x
+
+cmake -H. -Bbuild/
+cmake --build build/
+exit $?
+
 
 ARCH=$1
 # Trigger x64 build by default
