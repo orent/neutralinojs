@@ -41,7 +41,7 @@ add_library(websocketpp INTERFACE)
 target_include_directories(websocketpp INTERFACE .)
 target_link_libraries(websocketpp INTERFACE asio)
 if(WIN32)
-    target_compile_definitions(websocketpp PRIVATE _WEBSOCKETPP_CPP11_STL_)
+    target_compile_definitions(websocketpp INTERFACE _WEBSOCKETPP_CPP11_STL_)
 endif()
 
 
