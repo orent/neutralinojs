@@ -26,13 +26,11 @@ add_executable(neutralino
     api/clipboard/clipboard.cpp 
 )
 if(APPLE)
-    set_source_files_properties(api/os/os.cpp PROPERTIES COMPILE_DEFINITIONS OBJC_OLD_DISPATCH_PROTOTYPES)
+    set_source_files_properties(
+        api/os/os.cpp PROPERTIES COMPILE_DEFINITIONS OBJC_OLD_DISPATCH_PROTOTYPES)
 endif()
 
-target_include_directories(neutralino PUBLIC
-    ${CMAKE_SOURCE_DIR}
-    #${CMAKE_SOURCE_DIR}/lib
-)
+target_include_directories(neutralino PUBLIC .)
 
 target_link_libraries(neutralino 
     pthread 
@@ -45,13 +43,12 @@ target_link_libraries(neutralino
     platformfolders
 )
 
-target_compile_options(neutralino PUBLIC -Os)
-#target_compile_options(neutralino PUBLIC -no-pie)
 
 if(UNIX AND NOT APPLE)
     include(FindPkgConfig)
+    add_compile_options(-no-pie)
 endif()
-
+add_compile_options(-Os)
 
 
 add_library(tinyprocess OBJECT lib/tinyprocess/process.cpp)
