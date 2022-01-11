@@ -47,8 +47,8 @@ endif()
 
 add_library(tray INTERFACE)
 if(UNIX AND NOT APPLE)
-    pkg_check_modules(APPINDICATOR3 REQUIRED IMPORTED_TARGET appindicator3-0.1)
-    target_link_libraries(tray INTERFACE PkgConfig::APPINDICATOR3)
+    pkg_check_modules(APPINDICATOR REQUIRED IMPORTED_TARGET appindicator3-0.1)
+    target_link_libraries(tray INTERFACE PkgConfig::APPINDICATOR)
 endif()
 
 
@@ -63,5 +63,4 @@ elseif(UNIX)
     pkg_check_modules(WEBKIT2GTK REQUIRED IMPORTED_TARGET webkit2gtk-4.0)
     target_link_libraries(webview INTERFACE PkgConfig::WEBKIT2GTK)
 endif()
-
 

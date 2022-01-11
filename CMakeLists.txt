@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.11)
-set(CMAKE_OSX_ARCHITECTURES x86_64 CACHE STRING "")
+set(CMAKE_OSX_ARCHITECTURES x86_64 CACHE STRING "")     # must be set before project()
 project(NeutralinoJS CXX)
 set(CMAKE_CXX_STANDARD 17)
 
 if(UNIX)
     add_compile_options(-Os)
-    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")            # Not supported by clang
         add_compile_options(-no-pie)
     endif()
 elseif(WIN32)
@@ -54,6 +54,3 @@ target_link_libraries(neutralino
     webview
     platformfolders
 )
-
-
-
