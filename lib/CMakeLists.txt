@@ -21,12 +21,12 @@ else()
     target_sources(clip PRIVATE clip/clip_x11.cpp)
     pkg_check_modules(XCB REQUIRED IMPORTED_TARGET xcb)
     target_link_libraries(clip PRIVATE PkgConfig::XCB)
-    target_compile_definitions(clip PRIVATE HAVE_XCB_XLIB_H=1)
+    target_compile_definitions(clip PRIVATE HAVE_XCB_XLIB_H)
 endif()
 
 
 add_library(easylogging OBJECT easylogging/easylogging++.cc)
-target_compile_definitions(easylogging PRIVATE ELPP_NO_DEFAULT_LOG_FILE=1)
+target_compile_definitions(easylogging PRIVATE ELPP_NO_DEFAULT_LOG_FILE)
 
 
 add_library(platformfolders OBJECT platformfolders/platform_folders.cpp)
@@ -34,14 +34,14 @@ add_library(platformfolders OBJECT platformfolders/platform_folders.cpp)
 
 add_library(asio INTERFACE)
 target_include_directories(asio INTERFACE asio/include)
-target_compile_definitions(asio INTERFACE ASIO_STANDALONE=1)
+target_compile_definitions(asio INTERFACE ASIO_STANDALONE)
 
 
 add_library(websocketpp INTERFACE)
 target_include_directories(websocketpp INTERFACE .)
 target_link_libraries(websocketpp INTERFACE asio)
 if(WIN32)
-    target_compile_definitions(websocketpp _WEBSOCKETPP_CPP11_STL_=1)
+    target_compile_definitions(websocketpp PRIVATE _WEBSOCKETPP_CPP11_STL_)
 endif()
 
 
