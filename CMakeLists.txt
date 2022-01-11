@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 if(UNIX)
     add_compile_options(-Os)
-    if(NOT APPLE) 
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         add_compile_options(-no-pie)
     endif()
 elseif(WIN32)
