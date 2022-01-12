@@ -67,7 +67,7 @@ string(TOLOWER ${CMAKE_SYSTEM_PROCESSOR} NEU_ARCH)
 
 if(APPLE AND DEFINED CMAKE_OSX_ARCHITECTURES)
     # Overide with first item in list (presumably arm64):
-    list(GET ${CMAKE_OSX_ARCHITECTURES} 0 NEU_ARCH) 
+    list(GET CMAKE_OSX_ARCHITECTURES 0 NEU_ARCH) 
 endif()
 if(WIN32 AND DEFINED CMAKE_CXX_COMPILER_ARCHITECTURE_ID)
     # Overide with compiler target arch (presumably X86):
