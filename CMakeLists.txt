@@ -1,5 +1,14 @@
 cmake_minimum_required(VERSION 3.11)
-set(CMAKE_OSX_ARCHITECTURES x86_64 CACHE STRING "")     # must be set before project()
+
+if(WIN32)
+  set(CMAKE_GENERATOR_PLATFORM win32)
+elseif(APPLE)
+  set(CMAKE_OSX_ARCHITECTURES i386 CACHE STRING "")     # must be set before project()
+else()
+  set(CMAKE_CXX_FLAGS_INIT -m32)
+  set(CMAKE_EXE_LINKER_FLAGS_INIT -m32)
+endif()
+
 project(NeutralinoJS CXX)
 set(CMAKE_CXX_STANDARD 17)
 
