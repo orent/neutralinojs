@@ -1,8 +1,8 @@
 @echo off
 
-cmake --version
 cmake -H. -Bbuild
 cmake --build build
+type build\compile_commands.json
 exit /b
 
 echo Looking for vswhere.exe...

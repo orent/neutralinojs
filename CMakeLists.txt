@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.11)
-set(CMAKE_OSX_ARCHITECTURES x86_64 CACHE STRING "")     # must be set before project()
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 project(NeutralinoJS CXX)
 set(CMAKE_CXX_STANDARD 17)
 
