@@ -3,15 +3,6 @@ set(CMAKE_OSX_ARCHITECTURES x86_64 CACHE STRING "")     # must be set before pro
 project(NeutralinoJS CXX)
 set(CMAKE_CXX_STANDARD 17)
 
-if(UNIX)
-    add_compile_options(-Os)
-    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")            # Not supported by clang
-        add_compile_options(-no-pie)
-    endif()
-elseif(WIN32)
-    add_compile_options(/Os)
-    add_compile_options(/EHsc)
-endif()
 
 add_subdirectory(lib)
 
@@ -54,3 +45,21 @@ target_link_libraries(neutralino
     webview
     platformfolders
 )
+
+if(WIN32)
+    set(NEU_PLAT win)
+    add_compile_options(/Os)
+    add_compile_options(/EHsc)
+elseif(UNIX)
+    add_compile_options(-Os)
+    add_compile_options(-Wall)
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")            # Not supported by clang
+        add_compile_options(-no-pie)
+    endif()
+endif()
+
+get_cmake_property(_variableNames VARIABLES)
+list (SORT _variableNames)
+foreach (_variableName ${_variableNames})
+    message(STATUS "${_variableName}=${${_variableName}}")
+endforeach()
