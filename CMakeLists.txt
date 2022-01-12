@@ -1,9 +1,7 @@
 cmake_minimum_required(VERSION 3.11)
 
-if(WIN32)
-  set(CMAKE_GENERATOR_PLATFORM win32)
-elseif(APPLE)
-  set(CMAKE_OSX_ARCHITECTURES powerpc CACHE STRING "")     # must be set before project()
+if(APPLE)
+  set(CMAKE_OSX_ARCHITECTURES arm64 CACHE STRING "")     # must be set before project()
 else()
   set(CMAKE_CXX_FLAGS_INIT -m32)
   set(CMAKE_EXE_LINKER_FLAGS_INIT -m32)
