@@ -2,6 +2,7 @@
 set -e
 set -x
 
+export LDFLAGS=-m32 CFLAGS=-m32 CXXFLAGS=-m32
 cmake -H. -Bbuild/
 cmake --build build/
 exit $?

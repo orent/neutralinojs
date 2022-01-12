@@ -1,7 +1,7 @@
 @echo off
 
 cmake --version
-cmake -H. -Bbuild -A x86
+cmake -H. -Bbuild -A win32
 cmake --build build
 exit /b
 

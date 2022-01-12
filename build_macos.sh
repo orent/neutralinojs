@@ -2,6 +2,7 @@
 set -e
 set -x
 
+export CMAKE_OSX_ARCHITECTURES=arm64
 cmake -H. -Bbuild/
 cmake --build build/
 exit $?
