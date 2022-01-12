@@ -90,13 +90,3 @@ set_target_properties(neutralino PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY bin
     OUTPUT_NAME neutralino-${NEU_PLAT}_${NEU_ARCH}
 )
-
-
-
-
-
-get_cmake_property(_variableNames VARIABLES)
-list (SORT _variableNames)
-foreach (_variableName ${_variableNames})
-    message(STATUS "${_variableName}=${${_variableName}}")
-endforeach()
