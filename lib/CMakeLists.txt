@@ -55,7 +55,9 @@ endif()
 add_library(webview INTERFACE)
 if(WIN32)
     add_library(webview2loader SHARED IMPORTED)
-    set_target_properties(webview2loader PROPERTIES IMPORTED_LOCATION webview/windows/WebView2Loader.dll.lib)
+    set_target_properties(webview2loader PROPERTIES 
+        IMPORTED_IMPLIB webview/windows/WebView2Loader.dll.lib
+    )
     target_link_libraries(webview INTERFACE webview2loader)
 elseif(APPLE)
     target_link_libraries(webview INTERFACE "-framework Cocoa" "-framework WebKit")
