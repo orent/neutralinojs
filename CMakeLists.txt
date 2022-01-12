@@ -62,23 +62,33 @@ else()
 endif()
 
 
-string(TOLOWER ${CMAKE_CXX_PLATFORM_ID} NEU_PLAT)
+string(TOLOWER ${CMAKE_SYSTEM_NAME} NEU_PLAT)
+string(TOLOWER ${CMAKE_SYSTEM_PROCESSOR} NEU_ARCH)
+
+if(APPLE AND DEFINED CMAKE_OSX_ARCHITECTURES)
+    # Overide with first item in list (presumably arm64):
+    list(GET ${CMAKE_OSX_ARCHITECTURES} 0 NEU_ARCH) 
+endif()
+if(WIN32 AND DEFINED CMAKE_CXX_COMPILER_ARCHITECTURE_ID)
+    # Overide with compiler target arch (presumably X86):
+    string(TOLOWER ${CMAKE_CXX_COMPILER_ARCHITECTURE_ID} NEU_ARCH)
+endif()
+
 # Match names used by build_* scripts:
 if(${NEU_PLAT} STREQUAL darwin)
     set(NEU_PLAT mac)
 elseif(${NEU_PLAT} STREQUAL windows)
     set(NEU_PLAT win)
 endif()
-
-set(NEU_ARCH ${CMAKE_CXX_COMPILER_ARCHITECTURE_ID})
-# Overide with first item in list (presumably arm64):
-if(APPLE AND DEFINED CMAKE_OSX_ARCHITECTURES)
-    list(GET ${CMAKE_OSX_ARCHITECTURES} 0 NEU_ARCH) 
+if(${NEU_ARCH} STREQUAL x86_64 OR ${NEU_ARCH} STREQUAL amd64)
+    set(NEU_ARCH x64)
+elseif(${NEU_ARCH} STREQUAL x86)
+    set(NEU_ARCH i386)
 endif()
 
 set_target_properties(neutralino PROPERTIES 
     RUNTIME_OUTPUT_DIRECTORY bin
-    OUTPUT_NAME neutralino-${NEU_PLAT}_${NEU_ARCH}${CMAKE_EXECUTABLE_SUFFIX}
+    OUTPUT_NAME neutralino-${NEU_PLAT}_${NEU_ARCH}
 )
 
 
