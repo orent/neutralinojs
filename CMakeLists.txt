@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.11)
 
 if(APPLE)
   set(CMAKE_OSX_ARCHITECTURES arm64 CACHE STRING "")     # must be set before project()
-else()
+elseif(UNIX)
   set(CMAKE_CXX_FLAGS_INIT -m32)
   set(CMAKE_EXE_LINKER_FLAGS_INIT -m32)
 endif()
